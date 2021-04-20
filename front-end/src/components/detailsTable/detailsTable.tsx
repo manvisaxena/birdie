@@ -31,12 +31,10 @@ function detailsTable() {
   
   let onSelectId = (id: string) => {
     setIdCr(id);
-    console.log('setting id as-:', id);
   };
 
   let pieClicked = (event: string) => {
     setEventType(event);
-    console.log('setting event as-:', event);
   };
 
   useEffect(() => {

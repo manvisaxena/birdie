@@ -36,7 +36,6 @@ function EventsPie(Props: tableProps) {
             },
         })
         .then(response => {
-            console.log(response);
             setpieData(response.data);
             setLoading(false);
         })
@@ -48,7 +47,6 @@ function EventsPie(Props: tableProps) {
     }, [Props.idCr]);
 
     let transformData = () => {
-        // console.log('pie data to transform---- ', pieData);
         let eventCount: number[] = [];
         let eventType: string[] = [];
         pieData.map((item, i) => {

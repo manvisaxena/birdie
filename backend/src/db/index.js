@@ -11,16 +11,6 @@ const pool = mysql.createPool({
 
 let birdiedb = {};
 
-birdiedb.all = () => {
-    return new Promise((resolve, reject) => {
-        pool.query('select * from events limit 5', (err, results) => {
-            if(err){
-                return reject(err);
-            }
-            return resolve(results);
-        });
-    });
-}
 birdiedb.getcarerecipients = () => {
     return new Promise((resolve, reject) => {
         pool.query('select distinct care_recipient_id from events', (err, results) => {

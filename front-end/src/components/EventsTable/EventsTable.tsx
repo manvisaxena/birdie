@@ -54,7 +54,6 @@ function EventsTable(Props: tableProps) {
             },
         })
         .then(response => {
-            console.log('0------------', response.data.length );
             if (response.data.length !== 0 ) {               
                 // setTableData(response.data);
 
@@ -83,9 +82,6 @@ function EventsTable(Props: tableProps) {
 
                 }
 
-                console.log('tv Values------------> ', tv , Array.from(tv[0].keys()) );
-                
-                console.log('tt values------------>', tt , Array.from(tt.keys()));
                 setTableTitles(tt);
                 setTableValues(tv);
                 
@@ -99,7 +95,6 @@ function EventsTable(Props: tableProps) {
             setLoading(false);
         });
     }, [Props.idCr, Props.eventType]);
-    console.log('tableTitles--: ', tableTitles, tableValues, tableTitles.size);
 
     return(
         <TableView>
@@ -110,7 +105,7 @@ function EventsTable(Props: tableProps) {
                 </Tr>
                 {tableValues.map((row, i2) => <Tr key={i2}>
                     {Array.from(tableTitles.keys()).map((key, i3) => 
-                    <Td key={i3}> {row.get(key)}{key}</Td>)
+                    <Td key={i3}> {row.get(key)}</Td>)
                     }
                 </Tr>)}
                 </tbody>
