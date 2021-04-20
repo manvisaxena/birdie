@@ -2,11 +2,17 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { Doughnut } from 'react-chartjs-2';
+import styled from 'styled-components';
  
 type tableProps = {
     idCr: string,
     pieClicked: Function
 };
+const DoughnutContainer = styled.div`
+    background-color: #07f6f6;
+    width: 100%;
+    border: 1px solid #000000;
+`;
 
 function EventsPie(Props: tableProps) {
     
@@ -74,8 +80,9 @@ function EventsPie(Props: tableProps) {
     
     return(
         <div>
-            {pieData.length !== 0 && !loading &&
-            <Doughnut data={transformData()} legend={{display: false}} onElementsClick={onPieClicked} />}
+            {pieData.length !== 0 && !loading && <DoughnutContainer>
+                <Doughnut data={transformData()} legend={{display: false}} onElementsClick={onPieClicked} />
+            </DoughnutContainer>}
             {error && <div> {error} </div>}
         </div>
     );  

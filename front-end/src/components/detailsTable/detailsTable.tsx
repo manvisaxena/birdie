@@ -3,13 +3,27 @@ import EventsPie from '../EventsPie/EventsPie';
 import EventsTable from '../EventsTable/EventsTable';
 import SelectCareRecipients from '../SelectCareRecipient/SelectCareRecipient';
 import SubTitle from '../SubTitle';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// const DetailsContainer = styled.div`
-//   background-color: #CF2D0A;
-//   height: 350px;
-//   width: 200;
-// `;
+const DetailsContainer = styled.div`
+  background-color: #CF2D0A;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: left;
+  align-items: left;
+`;
+const PieView = styled.div`
+  height: 30%;
+  padding: 10px;
+  margin: 10 px;
+  
+`;
+const TableView = styled.div`
+  padding: 10px;
+  margin: 10 px;
+`;
 
 function detailsTable() {
   const [idCr, setIdCr] = useState<string>('');
@@ -30,15 +44,18 @@ function detailsTable() {
   return (
   <div>
     {
-      <div>
-        <SubTitle>Select the care recipient from the list</SubTitle>
-        <SelectCareRecipients onSelectId={onSelectId}/>
-        <div>
-          <EventsPie idCr={idCr} pieClicked={pieClicked}/>
+      <DetailsContainer>
+        <PieView>
+          <SubTitle>Select the care recipient from the list</SubTitle>
+          <SelectCareRecipients onSelectId={onSelectId}/>
+          <EventsPie idCr={idCr} pieClicked={pieClicked}/> 
+        </PieView>
+        {eventType !== '' && <TableView>
           <EventsTable idCr={idCr} eventType={eventType}/>
-        </div>
-
-      </div>
+        </TableView>        
+        }
+        
+      </DetailsContainer>
     }
     
   </div>

@@ -32,9 +32,8 @@ const AppContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: left;
+  align-items: left;
 `;
 
 class App extends React.Component<AppProps, AppState> {
@@ -46,9 +45,9 @@ class App extends React.Component<AppProps, AppState> {
     return (
       <>
         <GlobalStyle />
+        <Logo src={LogoUrl} />
+        <Title>Welcome to the birdie</Title>
         <AppContainer>
-          <Logo src={LogoUrl} />
-          <Title>Welcome to the birdie test</Title>
           <DetailsTable/>
         </AppContainer>
       </>
