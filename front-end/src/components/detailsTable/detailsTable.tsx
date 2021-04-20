@@ -6,7 +6,7 @@ import SubTitle from '../SubTitle';
 import styled from 'styled-components';
 
 const DetailsContainer = styled.div`
-  background-color: #CF2D0A;
+  
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -36,6 +36,7 @@ function detailsTable() {
 
   let pieClicked = (event: string) => {
     setEventType(event);
+    console.log('setting event as-:', event);
   };
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function detailsTable() {
           <EventsPie idCr={idCr} pieClicked={pieClicked}/> 
         </PieView>
         {eventType !== '' && <TableView>
-          <EventsTable idCr={idCr} eventType={eventType}/>
+          <EventsTable idCr={idCr} eventType={eventType} />
         </TableView>        
         }
         

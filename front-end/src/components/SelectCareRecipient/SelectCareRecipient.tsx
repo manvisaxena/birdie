@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 interface ONCLICKPROPS {
     onSelectId: (text: string) => void;
 }
+const InfoBox = styled.div`
+    border: none;
+`;
 
 function SelectCareRecipients(Props: ONCLICKPROPS) {
     interface CRLISTTYPE {
@@ -45,8 +49,8 @@ function SelectCareRecipients(Props: ONCLICKPROPS) {
                     <option value={item.care_recipient_id} key={i}>{item.care_recipient_id}</option>
                 ))}
             </select>}
-            {loading && <div>Loading please wait..</div>}
-            {!loading && error && <p className="error">{error}</p>}
+            {loading && <InfoBox>Loading please wait..</InfoBox>}
+            {!loading && error && <InfoBox>{error}</InfoBox>}
         </div>
     );
 }

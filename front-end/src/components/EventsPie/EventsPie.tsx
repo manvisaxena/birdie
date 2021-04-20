@@ -9,9 +9,8 @@ type tableProps = {
     pieClicked: Function
 };
 const DoughnutContainer = styled.div`
-    background-color: #07f6f6;
-    width: 100%;
-    border: 1px solid #000000;
+    width: 1000px;
+    margin-top: 10px;
 `;
 
 function EventsPie(Props: tableProps) {
@@ -30,7 +29,6 @@ function EventsPie(Props: tableProps) {
     const [error, setError]: [string, (error: string) => void] = React.useState('');
 
     useEffect(() => {
-        console.log('-----------> lfjfn' , Props , loading);
         axios
           .get<POSTI[]>(`http://localhost:8000/getdataforcarerecipientid?cr_id='${Props.idCr}'`, {
             headers: {
@@ -50,25 +48,34 @@ function EventsPie(Props: tableProps) {
     }, [Props.idCr]);
 
     let transformData = () => {
-        console.log('pie data to transform---- ', pieData);
+        // console.log('pie data to transform---- ', pieData);
         let eventCount: number[] = [];
         let eventType: string[] = [];
         pieData.map((item, i) => {
             eventCount.push(item.event_count);
             eventType.push(item.event_type);
         });
+        let generateColors = () => { 
+            let colorArray: string[] = [];
+
+            for ( let i = 0 ; i < 30 ; i++ ) {
+                let rnum1 = 1 + ( i * 10 );
+                let rnum2 = 150 + i;
+                let rnum3 = 200 + i;
+                colorArray.push( 'rgb(' + rnum2 + ', ' + rnum1 + ', ' + rnum3 );
+
+            }
+
+            return colorArray;
+        };
 
         let data = {
             datasets: [{
-                data: eventCount
+                data: eventCount,
+                backgroundColor: generateColors
             }],
         
-            labels: eventType,
-            options: {
-                legend: {
-                    display: false
-                }
-            }
+            labels: eventType
         };
 
         return data;
@@ -81,7 +88,11 @@ function EventsPie(Props: tableProps) {
     return(
         <div>
             {pieData.length !== 0 && !loading && <DoughnutContainer>
-                <Doughnut data={transformData()} legend={{display: false}} onElementsClick={onPieClicked} />
+                <Doughnut 
+                    data={transformData()} 
+                    legend={{display: true, position: 'right'}} 
+                    onElementsClick={onPieClicked} 
+                />
             </DoughnutContainer>}
             {error && <div> {error} </div>}
         </div>
